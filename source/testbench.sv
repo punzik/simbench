@@ -178,19 +178,13 @@ module testbench (input clock);
 
     // Reset
     localparam RESET_DURATION = 5;
-    int reset_counter = RESET_DURATION;
 
-    always_ff @(posedge clock)
-      if (reset_counter == 0)
-        reset <= 1'b0;
-      else
-        reset_counter <= reset_counter - 1;
+    initial begin
+        repeat(RESET_DURATION) @(posedge clock);
+        reset = 1'b0;
+    end
 
     // Print console output
-    // always_ff @(posedge clock)
-    //   if (!reset && console_send)
-    //     $write("%c", o_console_data);
-
     initial
       forever begin
           @(posedge clock);
