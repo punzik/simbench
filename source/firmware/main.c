@@ -8,7 +8,7 @@ void put_char(char c)
     IO_REG_CONSOLE = c | IO_REG_CONSOLE_SEND;
 }
 
-#define N       50
+#define N       200
 #define CHUNK   4
 #define ARR_LEN (10 * N / 3 + 1)
 
