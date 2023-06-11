@@ -38,7 +38,7 @@
 
 Результаты для 200 знаков на том же процессоре:
 ```
-    test-iverilog: TBD
-    test-modelsim: 382376
+    test-iverilog: 3257116
+    test-modelsim: 359562
     test-verilator: 20816
 ```
