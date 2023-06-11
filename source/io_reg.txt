@@ -1,0 +1,30 @@
+Register map of IO_REG (base: 0x1000000)
+========================================
+
+  |   Offset   |   Name  |     Description      |
+  |------------+---------+----------------------|
+  | 0x00000000 | CTRL    | Control register     |
+  | 0x00000004 | CONSOLE | Virtual console port |
+
+
+CTRL Register (0x00000000)
+--------------------------
+
+  Control register
+
+  | Bits | Name | Mode | Reset | Description |
+  |------+------+------+-------+-------------|
+  |    0 | STOP | WO   | 0     |             |
+
+
+CONSOLE Register (0x00000004)
+-----------------------------
+
+  Virtual console port
+
+  | Bits | Name  | Mode | Reset |           Description           |
+  |------+-------+------+-------+---------------------------------|
+  |    9 | VALID | RO   | 0     | Symbol in DATA is valid         |
+  |    8 | SEND  | HS   | 0     | Write 1 to send symbol          |
+  |  7:0 | DATA  | RW   | 0     | Read/write char from/to console |
+

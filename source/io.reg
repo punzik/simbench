@@ -1,0 +1,16 @@
+;; -*- lisp -*-
+
+((base #x01000000)
+ (address-width 32)
+ (data-width 32)
+ byte-enable
+
+ (reg "ctrl"
+      (info "Control register")
+      (bits 1 "stop" w (reset #b0)))
+
+ (reg "console" read-notify
+      (info "Virtual console port")
+      (bits 8 "data" rw (info "Read/write char from/to console"))
+      (bits 1 "send" hs (info "Write 1 to send symbol"))
+      (bits 1 "valid" r (info "Symbol in DATA is valid"))))

@@ -1,0 +1,15 @@
+# To run formal verification call SymbiYosys:
+# $ sby -f bus_mux.sby
+
+[options]
+mode prove
+
+[engines]
+smtbmc boolector
+
+[script]
+read -vlog95 -formal bus_mux.v
+prep -top bus_mux
+
+[files]
+bus_mux.v
