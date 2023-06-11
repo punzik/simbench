@@ -42,3 +42,19 @@
     test-modelsim: 359562
     test-verilator: 20816
 ```
+
+## Предварительные результаты по симуляторам "Big 3"
+
+Коллеги прогнали бенчмарк на Xcelium, VCS и Modelsim. Примерные оценки показали
+следующие результаты (приведено к скорости Xcelium):
+
+```
+    test-verilator: 0.35
+    test-xcelium: 1
+    test-vcs: 1.37
+    test-modelsim: 5.95
+    test-iverilog: 58
+```
+
+Конечно, нужно учитывать то, что Verilator - это cycle-accurate симулятор, и что он
+не поддерживает состояния X и Z.
