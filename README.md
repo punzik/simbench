@@ -39,6 +39,7 @@
 Результаты для 200 знаков на том же процессоре:
 ```
     test-iverilog: 3257116
+    test-xsim: 938296
     test-modelsim: 359562
     test-verilator: 20816
 ```
@@ -53,6 +54,7 @@
     test-xcelium: 1
     test-vcs: 1.37
     test-modelsim: 5.95
+    test-xsim: 15.5
     test-iverilog: 58
 ```
 
