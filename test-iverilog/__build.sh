@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-iverilog -g2012 -o top -f ../source/sources.f top.sv
+FFILE=../source/sources.f
+
+iverilog -g2012 -o top -f $FFILE top.sv
