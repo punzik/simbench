@@ -8,7 +8,7 @@ then
     tests=$(ls -1d test-*)
 elif [ -n "$1" ]
 then
-    tests=$1
+    tests="$@"
 else
     echo "Usage: $0 <TEST_DIRECTORY | all>"
     exit -1
