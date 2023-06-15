@@ -4,7 +4,8 @@ module md5calculator
   (input clock,
    input reset,
    output done,
-   // input [31:0] data_in,
+   input [31:0] md5_data_addr,
+   input [31:0] md5_data_len,
    output [127:0] md5);
 
     parameter MEM_ADDR_WIDTH = 16;
@@ -193,7 +194,8 @@ module md5calculator
        .o_ctrl_stop(ctrl_stop),
 
        // MD5
-       // .i_md5_data_data(data_in),
+       .i_data_addr_addr(md5_data_addr),
+       .i_data_len_len(md5_data_len),
        .o_md5_out0_data(md5_out0),
        .o_md5_out1_data(md5_out1),
        .o_md5_out2_data(md5_out2),

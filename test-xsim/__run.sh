@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
-#vsim -c -batch -voptargs=+acc=npr -do "run -all" -quiet -lib testbench top
-xsim top --runall
+if [ -n "$1" ]; then
+    dlen_arg="-testplusarg dlen=$1"
+else
+    dlen_arg=""
+fi
+
+xsim top $dlen_arg --runall

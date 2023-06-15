@@ -17,6 +17,12 @@ module io_reg
    /* ---- 'ctrl' ---- */
    output wire o_ctrl_stop,
 
+   /* ---- 'data_addr' ---- */
+   input wire [31:0] i_data_addr_addr,
+
+   /* ---- 'data_len' ---- */
+   input wire [31:0] i_data_len_len,
+
    /* ---- 'md5_out0' ---- */
    output wire [31:0] o_md5_out0_data,
 
@@ -40,6 +46,8 @@ module io_reg
 
   /* ---- Address decoder ---- */
   wire ctrl_select;
+  wire data_addr_select;
+  wire data_len_select;
   wire md5_out0_select;
   wire md5_out1_select;
   wire md5_out2_select;
@@ -51,27 +59,39 @@ module io_reg
     i_addr[3] == 1'b0 &&
     i_addr[4] == 1'b0;
 
-  assign md5_out0_select =
+  assign data_addr_select =
     i_addr[2] == 1'b1 &&
     i_addr[3] == 1'b0 &&
     i_addr[4] == 1'b0;
 
-  assign md5_out1_select =
+  assign data_len_select =
     i_addr[2] == 1'b0 &&
     i_addr[3] == 1'b1 &&
     i_addr[4] == 1'b0;
 
-  assign md5_out2_select =
+  assign md5_out0_select =
     i_addr[2] == 1'b1 &&
     i_addr[3] == 1'b1 &&
     i_addr[4] == 1'b0;
 
+  assign md5_out1_select =
+    i_addr[2] == 1'b0 &&
+    i_addr[3] == 1'b0 &&
+    i_addr[4] == 1'b1;
+
+  assign md5_out2_select =
+    i_addr[2] == 1'b1 &&
+    i_addr[3] == 1'b0 &&
+    i_addr[4] == 1'b1;
+
   assign md5_out3_select =
     i_addr[2] == 1'b0 &&
+    i_addr[3] == 1'b1 &&
     i_addr[4] == 1'b1;
 
   assign console_select =
     i_addr[2] == 1'b1 &&
+    i_addr[3] == 1'b1 &&
     i_addr[4] == 1'b1;
 
 
@@ -179,6 +199,8 @@ module io_reg
 
   /* ---- Read multiplexer ---- */
   reg [31:0] data_ctrl;
+  reg [31:0] data_data_addr;
+  reg [31:0] data_data_len;
   reg [31:0] data_md5_out0;
   reg [31:0] data_md5_out1;
   reg [31:0] data_md5_out2;
@@ -187,6 +209,8 @@ module io_reg
 
   assign o_data = 
     data_ctrl |
+    data_data_addr |
+    data_data_len |
     data_md5_out0 |
     data_md5_out1 |
     data_md5_out2 |
@@ -195,11 +219,21 @@ module io_reg
 
   always @(*) begin
     data_ctrl = 32'd0;
+    data_data_addr = 32'd0;
+    data_data_len = 32'd0;
     data_md5_out0 = 32'd0;
     data_md5_out1 = 32'd0;
     data_md5_out2 = 32'd0;
     data_md5_out3 = 32'd0;
     data_console = 32'd0;
+
+    if (data_addr_select) begin
+      data_data_addr[31:0] = i_data_addr_addr;
+    end
+
+    if (data_len_select) begin
+      data_data_len[31:0] = i_data_len_len;
+    end
 
     if (console_select) begin
       data_console[7:0] = i_console_data;

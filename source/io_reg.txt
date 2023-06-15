@@ -1,14 +1,16 @@
 Register map of IO_REG (base: 0x1000000)
 ========================================
 
-  |   Offset   |   Name   |       Description       |
-  |------------+----------+-------------------------|
-  | 0x00000000 | CTRL     | Control register        |
-  | 0x00000004 | MD5_OUT0 | Bytes 0..3 of MD5 sum   |
-  | 0x00000008 | MD5_OUT1 | Bytes 4..7 of MD5 sum   |
-  | 0x0000000c | MD5_OUT2 | Bytes 8..11 of MD5 sum  |
-  | 0x00000010 | MD5_OUT3 | Bytes 12..15 of MD5 sum |
-  | 0x00000014 | CONSOLE  | Virtual console port    |
+  |   Offset   |   Name    |       Description       |
+  |------------+-----------+-------------------------|
+  | 0x00000000 | CTRL      | Control register        |
+  | 0x00000004 | DATA_ADDR | Data block address      |
+  | 0x00000008 | DATA_LEN  | Data block length       |
+  | 0x0000000c | MD5_OUT0  | Bytes 0..3 of MD5 sum   |
+  | 0x00000010 | MD5_OUT1  | Bytes 4..7 of MD5 sum   |
+  | 0x00000014 | MD5_OUT2  | Bytes 8..11 of MD5 sum  |
+  | 0x00000018 | MD5_OUT3  | Bytes 12..15 of MD5 sum |
+  | 0x0000001c | CONSOLE   | Virtual console port    |
 
 
 CTRL Register (0x00000000)
@@ -21,7 +23,27 @@ CTRL Register (0x00000000)
   |    0 | STOP | WO   | 0     |             |
 
 
-MD5_OUT0 Register (0x00000004)
+DATA_ADDR Register (0x00000004)
+-------------------------------
+
+  Data block address
+
+  | Bits | Name | Mode | Reset | Description |
+  |------+------+------+-------+-------------|
+  | 31:0 | ADDR | RO   | 0     |             |
+
+
+DATA_LEN Register (0x00000008)
+------------------------------
+
+  Data block length
+
+  | Bits | Name | Mode | Reset | Description |
+  |------+------+------+-------+-------------|
+  | 31:0 | LEN  | RO   | 0     |             |
+
+
+MD5_OUT0 Register (0x0000000c)
 ------------------------------
 
   Bytes 0..3 of MD5 sum
@@ -31,7 +53,7 @@ MD5_OUT0 Register (0x00000004)
   | 31:0 | DATA | WO   | 0     |             |
 
 
-MD5_OUT1 Register (0x00000008)
+MD5_OUT1 Register (0x00000010)
 ------------------------------
 
   Bytes 4..7 of MD5 sum
@@ -41,7 +63,7 @@ MD5_OUT1 Register (0x00000008)
   | 31:0 | DATA | WO   | 0     |             |
 
 
-MD5_OUT2 Register (0x0000000c)
+MD5_OUT2 Register (0x00000014)
 ------------------------------
 
   Bytes 8..11 of MD5 sum
@@ -51,7 +73,7 @@ MD5_OUT2 Register (0x0000000c)
   | 31:0 | DATA | WO   | 0     |             |
 
 
-MD5_OUT3 Register (0x00000010)
+MD5_OUT3 Register (0x00000018)
 ------------------------------
 
   Bytes 12..15 of MD5 sum
@@ -61,7 +83,7 @@ MD5_OUT3 Register (0x00000010)
   | 31:0 | DATA | WO   | 0     |             |
 
 
-CONSOLE Register (0x00000014)
+CONSOLE Register (0x0000001c)
 -----------------------------
 
   Virtual console port

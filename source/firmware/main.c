@@ -4,9 +4,6 @@
 
 #include <stdint.h>
 
-#define DATA_ADDR 0x10000
-#define DATA_LEN  0x10000
-
 void put_char(char c)
 {
     IO_REG_CONSOLE = c | IO_REG_CONSOLE_SEND;
@@ -15,8 +12,13 @@ void put_char(char c)
 int main(void)
 {
     uint8_t result[16];
+    uint8_t *daddr;
+    uint32_t dlen;
 
-    md5Buf((uint8_t *)DATA_ADDR, DATA_LEN, result);
+    daddr = (uint8_t *)IO_REG_DATA_ADDR;
+    dlen  = IO_REG_DATA_LEN;
+
+    md5Buf(daddr, dlen, result);
 
     IO_REG_MD5_OUT0 = *(uint32_t *)(result + 0);
     IO_REG_MD5_OUT1 = *(uint32_t *)(result + 4);
