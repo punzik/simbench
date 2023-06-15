@@ -6,7 +6,7 @@ INCLUDES =
 
 FLAGS = -Wno-WIDTH -cc --top-module $(TOP_MODULE) +1800-2017ext+sv \
 	--timing --Mdir $(TOP_MODULE) -o $(TOP_MODULE) -f $(FLAGS_FILE) \
-	--timescale "1ps/1ps" --threads 1
+	--timescale "1ps/1ps" --threads 1 -j 0
 
 # FLAGS += --trace
 

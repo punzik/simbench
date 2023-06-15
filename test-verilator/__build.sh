@@ -2,4 +2,4 @@
 set -e
 
 make clean
-make
+make OPT_FAST="-Os -march=native" VM_PARALLEL_BUILDS=0

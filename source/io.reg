@@ -9,6 +9,22 @@
       (info "Control register")
       (bits 1 "stop" w (reset #b0)))
 
+ (reg "md5_out0"
+      (info "Bytes 0..3 of MD5 sum")
+      (bits 32 "data" w))
+
+ (reg "md5_out1"
+      (info "Bytes 4..7 of MD5 sum")
+      (bits 32 "data" w))
+
+ (reg "md5_out2"
+      (info "Bytes 8..11 of MD5 sum")
+      (bits 32 "data" w))
+
+ (reg "md5_out3"
+      (info "Bytes 12..15 of MD5 sum")
+      (bits 32 "data" w))
+
  (reg "console" read-notify
       (info "Virtual console port")
       (bits 8 "data" rw (info "Read/write char from/to console"))

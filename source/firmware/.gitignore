@@ -2,3 +2,4 @@
 *.bin
 *.map
 *.asm
+compile_flags.txt

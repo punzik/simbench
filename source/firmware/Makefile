@@ -1,20 +1,11 @@
 PROJECT := fw
-SOURCES := crt0.s main.c uprintf.c
+SOURCES := crt0.s main.c uprintf.c md5.c
 CPU_RAM_REG := ram_reg
 
 ARCH    := riscv32-none-elf
 CFLAGS  := -O2 -Wall -march=rv32i -mabi=ilp32 -mstrict-align \
-           -nostartfiles \
-           -ffunction-sections -lgcc \
+           -nostartfiles -ffunction-sections -lgcc \
            -Wl,-Tpicorv32-minimal.ld,-static,-Map,$(PROJECT).map
-
-# CFLAGS  := -O3 -Wall -march=rv32i -mabi=ilp32 -mstrict-align \
-# 	   -nostartfiles \
-#            -ffunction-sections \
-# 	   -ffreestanding -lgcc \
-#            -Wl,-T,picorv32-minimal.ld,-static,-Map,$(PROJECT).map
-
-#           -nostdlib
 
 ELF = $(PROJECT).elf
 BIN = $(PROJECT).bin
