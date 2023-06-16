@@ -27,12 +27,15 @@
 - QuestaSim 64 2021.1 (Revision: 2021.1)
 - Vivado 2021.1
 
-Время выполнения бенчмарка на блоке 1кБ (мс):
+Время выполнения бенчмарка на блоке 1кБ (чч:мм:сс):
 ```
-    Icarus Verilog: TBD
-    ModelSim: TBD
-    QuestaSim: TBD
-    Verilator: TBD
-    XSIM: TBD
-    Xcelium: TBD
+  | Симулятор             | Build    | Run      |
+  +-----------------------+----------+----------+
+  | Icarus Verilog        | TBD      |          |
+  | ModelSim              | 00:00:00 | 01:33:14 |
+  | QuestaSim             | 00:00:00 | 01:29:38 |
+  | Verilator (1 thread)  | 00:12:03 | 00:02:57 |
+  | Verilator (8 threads) | 00:18:45 | 00:01:33 |
+  | XSIM                  | 00:00:29 | 02:08:54 |
+  | Xcelium               | TBD      |          |
 ```
