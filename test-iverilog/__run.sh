@@ -2,4 +2,4 @@
 
 . ../scripts/sim_vars.sh
 
-vvp -n ./top +dlen=$BLOCK_SIZE
+vvp -N ./top +dlen=$BLOCK_SIZE
