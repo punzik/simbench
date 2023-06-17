@@ -2,7 +2,7 @@
 
 ## Default valies
 CPU_COUNT=1024
-BLOCK_SIZE=1
+BLOCK_SIZE=1024
 THREADS=1
 
 BLD_SCRIPT="__build.sh"
