@@ -1,4 +1,4 @@
-# Простой бенчмарк HDL симуляторов (преранняя версия)
+# Простой бенчмарк HDL симуляторов (версия альфа)
 
 Для оценки скорости запускается симуляция 1024 софт-процессоров
 [PicoRV32](https://github.com/YosysHQ/picorv32) с программой вычисления хэш-суммы MD5
@@ -14,9 +14,29 @@
 симуляторе. Скрипты называются `__build.sh` (для сборки проекта) и `__run.sh` (для
 запуска симуляции).
 
-Скрипт `run.sh` запускает бенчмарк из выбранной папки или все тесты, если параметром
-указать `all`. В параметрах можно указать сразу несколько папок с тестами. Результаты
-бенчмарка записываются в файл `results.txt`.
+Скрипт `run.sh` запускает бенчмарк из выбранной папки или все тесты. В параметрах
+можно указать количество софт-ядер, размер блока, количество потоков симуляции (пока
+только для верилятора) и список бенчмарков:
+
+```
+  $ ./run.sh -h
+  Usage: ./run.sh [OPTION]... [SIM...]
+  Run simulator benchmark. Calculates MD5 hash from a block data
+  on an array of soft-cores PicoRV32.
+
+  Options:
+    -c [COUNT]    Soft CPU count in simulation. Default: 1024
+    -s [SIZE]     Data block size in bytes. Default: 1024 bytes
+    -t [COUNT]    Simulation threads count. Default: 1
+                  (so far only for Verilator)
+    -l            List of available benchmarks
+    -h            This help
+
+  The SIM parameter is the name of the simulator from the list of
+  option -l. If the parameter is not specified, benchmarks for all
+  simulators will be performed. Be careful, some simulators take
+  a very long time to benchmark.
+```
 
 ## Результаты для 1024 процессоров
 

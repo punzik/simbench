@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -n "$1" ]; then
-    dlen_arg="+dlen=$1"
-else
-    dlen_arg=""
-fi
+. ../scripts/sim_vars.sh
 
-vvp -n ./top $dlen_arg
+vvp -n ./top +dlen=$BLOCK_SIZE

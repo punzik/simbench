@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -n "$1" ]; then
-    dlen_arg="-testplusarg dlen=$1"
-else
-    dlen_arg=""
-fi
+. ../scripts/sim_vars.sh
 
-xsim top $dlen_arg --runall
+xsim top -testplusarg dlen=$BLOCK_SIZE --runall

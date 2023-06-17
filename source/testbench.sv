@@ -1,7 +1,8 @@
 `timescale 1ps/1ps
 
-module testbench (input clock);
-    localparam CPU_COUNT = 1024;
+module testbench #(parameter CPU_COUNT = 1024)
+    (input clock);
+
     localparam DATA_ADDR = 32'h00010000;
     localparam DATA_LEN = 1024;
 

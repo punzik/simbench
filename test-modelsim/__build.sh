@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-FFILE=../source/sources.f
+. ../scripts/sim_vars.sh
 
 rm -rf testbench
-vlog -sv -work testbench -vopt -f $FFILE top.sv
+vlog -sv -work testbench -vopt $param -f $FFILE top.sv
