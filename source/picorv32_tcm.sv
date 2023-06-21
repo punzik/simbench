@@ -38,7 +38,7 @@ module picorv32_tcm #(parameter ADDR_WIDTH = 8,
 
     assign word_addr = byte_addr[ADDR_WIDTH-1:2];
 
-    always_ff @(posedge clock) begin
+    always @(posedge clock) begin
         for (int n = 0; n < 4; n += 1)
           if (write && mem_wstrb[n])
             ram[word_addr][n*8 +: 8] <= mem_wdata[n*8 +: 8];
