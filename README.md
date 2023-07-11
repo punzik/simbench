@@ -46,11 +46,13 @@
 - ModelSim SE-64 2020.4 (Revision: 2020.10)
 - QuestaSim 64 2021.1 (Revision: 2021.1)
 - Vivado 2021.1
+- [OSS CVC](https://github.com/cambridgehackers/open-src-cvc) (rev. 782c69a)
 
 Время выполнения бенчмарка на блоке 1кБ (чч:мм:сс):
 ```
 | Симулятор             | Build    | Run      |
 +-----------------------+----------+----------+
+| CVC                   | 00:02:22 | 00:51:47 |
 | Icarus Verilog        | 00:00:27 | 19:04:37 |
 | ModelSim              | 00:00:00 | 01:33:14 |
 | QuestaSim             | 00:00:00 | 01:29:38 |
@@ -74,6 +76,7 @@
 ```
 | Симулятор             | Run  |
 +-----------------------+------+
+| CVC                   |   33 |
 | Icarus Verilog        |  738 |
 | ModelSim              |   60 |
 | QuestaSim             |   58 |

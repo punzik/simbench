@@ -1,0 +1,13 @@
+diff --git a/source/testbench.sv b/source/testbench.sv
+index 1872eed..6f27f84 100644
+--- a/source/testbench.sv
++++ b/source/testbench.sv
+@@ -32,7 +32,7 @@ module testbench #(parameter CPU_COUNT = 1024)
+ 
+         initial begin
+             reset = 1'b1;
+-            repeat($urandom % 5 + 2) @(posedge clock);
++            repeat($unsigned($random) % 5 + 2) @(posedge clock);
+             reset = 1'b0;
+             @(posedge clock);
+ 

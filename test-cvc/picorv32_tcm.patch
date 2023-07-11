@@ -1,0 +1,18 @@
+diff --git a/source/picorv32_tcm.sv b/source/picorv32_tcm.sv
+index 29e4d6c..763adc7 100644
+--- a/source/picorv32_tcm.sv
++++ b/source/picorv32_tcm.sv
+@@ -39,9 +39,12 @@ module picorv32_tcm #(parameter ADDR_WIDTH = 8,
+     assign word_addr = byte_addr[ADDR_WIDTH-1:2];
+ 
+     always @(posedge clock) begin
++        logic [31:0] tmp;
++        tmp = ram[word_addr];
+         for (int n = 0; n < 4; n += 1)
+           if (write && mem_wstrb[n])
+-            ram[word_addr][n*8 +: 8] <= mem_wdata[n*8 +: 8];
++            tmp[n*8 +: 8] = mem_wdata[n*8 +: 8];
++        ram[word_addr] <= tmp;
+ 
+         mem_rdata <= ram[word_addr];
+     end
