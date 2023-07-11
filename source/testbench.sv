@@ -10,8 +10,6 @@ module testbench #(parameter CPU_COUNT = 1024)
     logic [CPU_COUNT-1:0] done_all;
 
     for (genvar ncpu = 0; ncpu < CPU_COUNT; ncpu = ncpu + 1) begin : cpus
-        localparam logic [31:0] MD5IN = ncpu;
-
         logic done;
         logic reset;
         logic [127:0] md5;
@@ -39,7 +37,7 @@ module testbench #(parameter CPU_COUNT = 1024)
             @(posedge clock);
 
             while(!done) @(posedge clock);
-            $display("MD5(0x%x) = %x", MD5IN, md5);
+            $display("MD5(0x%x) = %x", ncpu, md5);
         end
     end
 
