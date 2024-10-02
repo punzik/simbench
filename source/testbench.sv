@@ -9,8 +9,11 @@ module testbench #(parameter CPU_COUNT = 1024)
     logic [31:0] data_len;
     logic [CPU_COUNT-1:0] done_all;
 
+    int cycle = 0;
+    always @(posedge clock) cycle <= cycle + 1;
+
     for (genvar ncpu = 0; ncpu < CPU_COUNT; ncpu = ncpu + 1) begin : cpus
-        logic done;
+        logic done, done_ack = 1'b0;
         logic reset;
         logic [127:0] md5;
 
@@ -30,27 +33,27 @@ module testbench #(parameter CPU_COUNT = 1024)
           if(!$value$plusargs("dlen=%d", data_len))
             data_len = DATA_LEN;
 
-        initial begin
-            reset = 1'b1;
-            repeat($urandom % 5 + 2) @(posedge clock);
-            reset = 1'b0;
-            @(posedge clock);
+        int reset_duration;
+        initial reset_duration = $urandom % CPU_COUNT + 2;
+        assign reset = cycle <= reset_duration;
 
-            while(!done) @(posedge clock);
-            $display("MD5(0x%x) = %x", ncpu, md5);
+        always @(posedge clock) begin
+            if (cycle > reset_duration && done && !done_ack) begin
+                done_ack <= 1'b1;
+                $display("MD5(0x%x) = %x", ncpu, md5);
+            end
         end
     end
 
     // Wait for complete
-    initial begin
-        $display("--- BENCH BEGIN ---");
-
-        repeat(5) @(posedge clock);
-        while ((&done_all) == 1'b0) @(posedge clock);
-        @(posedge clock);
-
-        $display("--- BENCH DONE ---");
-        $finish;
+    always @(posedge clock) begin
+        if (cycle == 0) $display("--- BENCH BEGIN ---");
+        else if (cycle > 5) begin
+            if (&done_all) begin
+                $display("--- BENCH DONE ---");
+                $finish;
+            end
+        end
     end
 
 endmodule // testbench

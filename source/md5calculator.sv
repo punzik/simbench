@@ -216,13 +216,11 @@ module md5calculator
        );
 
     // Print console output
-    initial
-      forever begin
-          @(posedge clock);
-          if (!reset && console_send) begin
-              $write("%c", o_console_data);
-              $fflush;
-          end
-      end
+    always @(posedge clock) begin
+        if (!reset && console_send) begin
+            $write("%c", o_console_data);
+            $fflush;
+        end
+    end
 
 endmodule // testbench
