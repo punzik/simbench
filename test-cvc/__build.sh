@@ -20,6 +20,6 @@ sed -i -e "s/CPU_COUNT = 1024/CPU_COUNT = $CPU_COUNT/" top-mod.sv
 sources=$(cat $FFILE | grep -v "testbench.sv\|picorv32_tcm.sv")
 
 sv2v --top=top -w simbench-all.v top-mod.sv testbench.sv picorv32_tcm.sv $sources
-sed -i '1i `timescale 1ps/1ps' simbench-all.v
+patch simbench-all.v simbench-all.patch
 
 cvc64 -o top -O -pipe +large +nospecify simbench-all.v

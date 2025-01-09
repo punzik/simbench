@@ -1,13 +1,13 @@
 diff --git a/source/testbench.sv b/source/testbench.sv
-index 1872eed..6f27f84 100644
+index 2949591..084d7a3 100644
 --- a/source/testbench.sv
 +++ b/source/testbench.sv
-@@ -32,7 +32,7 @@ module testbench #(parameter CPU_COUNT = 1024)
+@@ -34,7 +34,7 @@ module testbench #(parameter CPU_COUNT = 1024)
+             data_len = DATA_LEN;
  
-         initial begin
-             reset = 1'b1;
--            repeat($urandom % 5 + 2) @(posedge clock);
-+            repeat($unsigned($random) % 5 + 2) @(posedge clock);
-             reset = 1'b0;
-             @(posedge clock);
+         int reset_duration;
+-        initial reset_duration = $urandom % CPU_COUNT + 2;
++        initial reset_duration = $unsigned($random) % CPU_COUNT + 2;
+         assign reset = cycle <= reset_duration;
  
+         always @(posedge clock) begin

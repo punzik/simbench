@@ -1,0 +1,20 @@
+--- simbench-all.v	2025-01-08 22:09:06.737402979 +0300
++++ simbench-all.v1	2025-01-08 22:08:27.142909974 +0300
+@@ -1,3 +1,4 @@
++`timescale 1ps/1ps
+ module top;
+ 	parameter CPU_COUNT = 1024;
+ 	reg clock = 1'b0;
+@@ -13,10 +14,9 @@
+ 	wire [CPU_COUNT - 1:0] done_all;
+ 	reg signed [31:0] cycle = 0;
+ 	always @(posedge clock) cycle <= cycle + 1;
+-	genvar _gv_ncpu_1;
++	genvar ncpu;
+ 	generate
+-		for (_gv_ncpu_1 = 0; _gv_ncpu_1 < CPU_COUNT; _gv_ncpu_1 = _gv_ncpu_1 + 1) begin : cpus
+-			localparam ncpu = _gv_ncpu_1;
++		for (ncpu = 0; ncpu < CPU_COUNT; ncpu = ncpu + 1) begin : cpus
+ 			wire done;
+ 			reg done_ack = 1'b0;
+ 			wire reset;
