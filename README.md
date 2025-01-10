@@ -49,6 +49,7 @@
 - QuestaSim 64 2021.1 (Revision: 2021.1)
 - Vivado 2021.1
 - [OSS CVC](https://github.com/cambridgehackers/open-src-cvc) (rev. 782c69a)
+- VCS T-2022.06
 
 Время выполнения бенчмарка на блоке 1кБ (чч:мм:сс):
 ```
